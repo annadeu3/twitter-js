@@ -1,5 +1,6 @@
 var express = require( 'express');
 var app = express(); // creates an instance of an express application
+var swig = require('swig');
 
 app.get('/', function(request, response, next){
 	response.send("<h1>Welcome!</h1><p>Hello to you!</p>");
@@ -32,16 +33,20 @@ app.use('/views/index.html', function(request, response, next){
 	next();
 });
 
+var locals = {
+    title: 'An Example',
+    people: [
+        { name: 'Gandalf'},
+        { name: 'Frodo' },
+        { name: 'Hermione'}
+    ]
+};
+swig.renderFile(__dirname + '/views/index.html', locals, function (err, output) {
+    console.log(output);
+});
 
-// var latestTweets = [];
 
-// app.post('/', function(request, response, next){
-// 	latestTweets.push({
-// 		user: "current user",
-// 		tweet: "some tweet"
-// 	});
-// 	response.json(latestTweets[latestTweets.length -1]);
-// });
+
 
 
 
