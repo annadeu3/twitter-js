@@ -6,8 +6,8 @@ module.exports = router;
 
 var data = [];
 
-function add (name, text) {
-  data.push({ name: name, text: text });
+function add (id, name, text) {
+  data.push({id: id, name: name, text: text });
 }
 
 function list () {
@@ -18,7 +18,11 @@ function find (properties) {
   return _.cloneDeep(_.filter(data, properties));
 }
 
-module.exports = { add: add, list: list, find: find };
+module.exports = { 
+	add: add,
+ 	list: list, 
+ 	find: find 
+ };
 
 var randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
